@@ -1,0 +1,19 @@
+{{>layouts/header}}
+
+{{#boxing}}
+<form class="container" action="/boxing/update" method="post">
+    <input name ="id" type="hidden" value="{{id}}">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{boxing.title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-control">내용</label>
+        <textarea CLASS="form-control" rows="3" name="content">{{boxing.content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">장바구니</button>
+    <a href="/boxing/{{boxing.id}}">Back</a>
+</form>
+{{/boxing}}
+
+{{>layouts/footer}}
