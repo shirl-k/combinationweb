@@ -24,4 +24,11 @@ public class Boxing {
     private String content;
 
 
+    public void patch(Boxing boxing) { //patch 메서드 : 수정할 내용 있는 경우에만 동작
+        if(boxing.title != null)
+            this.title = boxing.title;
+        if(boxing.content !=null)
+            this.content= boxing.content; //갱신할 값이 있으면 this(target)의 title 갱신
+    }
+
 }
