@@ -30,31 +30,35 @@ public class BoxingApiController {
         return boxingService.show(id);
     }
     @PostMapping("/api/boxing")
-    public Boxing create(@RequestBody BoxingForm dto) {
-        Boxing boxing = dto.toEntity();
-        return boxingRepository.save(boxing);
-    }
-//    @PatchMapping("/api/boxing/{id}")
-//    public ResponseEntity<Boxing> update(@PathVariable Long id,
-//                         @RequestBody BoxingForm dto) {
-//        Boxing boxing = dto.toEntity();
-//        log.info("id:{}, boxing: {}", id, boxing.toString());
-//        Boxing target = boxingRepository.findById(id).orElse(null);
-//        if (target == null || id !=boxing.getId()) {
-//            log.info("잘못된 요청! id: {}, boxing: {}",id,boxing.toString());
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        }  //업데이트 및 정상 응답 (200) 하기
-//            target.patch(boxing); //기존 데이터에 새 데이터 붙이기
-//            Boxing updated = boxingRepository.save(target); //
-//            return ResponseEntity.status(HttpStatus.OK).body(updated); //정상 응답
-//    }
-//    @DeleteMapping("/api/boxing/{id}")
-//    public ResponseEntity<Boxing> delete(@PathVariable Long id) {
-//        Boxing target = boxingRepository.findById(id).orElse(null);
-//        if(target == null) {return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);}
-//        boxingRepository.delete(target);
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//
-//    }
+    public ResponseEntity<Boxing> create(@RequestBody BoxingForm dto) {
 
+            Boxing created = boxingService.create(dto);
+            return (created != null) ?
+                    ResponseEntity.status(HttpStatus.OK).body(created) :
+                    ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @PatchMapping("/api/boxing/{id}")
+    public ResponseEntity<Boxing> update(@PathVariable Long id,
+                         @RequestBody BoxingForm dto) {
+        Boxing updated = boxingService.update(id,dto);
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); //삼항연산자로 수정되면 정상, 안되면 오류
+    }
+    @DeleteMapping("/api/boxing/{id}")
+    public ResponseEntity<Boxing> delete(@PathVariable Long id) {
+        Boxing deleted = boxingService.delete(id);
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @PostMapping("/api/transaction-test")
+    public ResponseEntity<List<Boxing>> transactionTest
+            (@RequestBody List<BoxingForm> dtos) {
+        List<Boxing> createdList = boxingService.createBoxing(dtos);
+        return (createdList != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(createdList) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+    }
 }

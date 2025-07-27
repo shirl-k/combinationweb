@@ -1,4 +1,4 @@
-package com.example.combinationweb2;
+package com.example.combinationweb2.controller;
 
 import com.example.combinationweb2.dto.BoxingForm;
 import com.example.combinationweb2.entity.Boxing;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Controller

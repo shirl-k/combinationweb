@@ -1,4 +1,4 @@
-package com.example.combinationweb2;
+package com.example.combinationweb2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
