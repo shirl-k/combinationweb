@@ -24,6 +24,8 @@ public class Boxing {
     private String content;
 
 
+
+
     public void patch(Boxing boxing) { //patch 메서드 : 수정할 내용 있는 경우에만 동작
         if(boxing.title != null)
             this.title = boxing.title;
