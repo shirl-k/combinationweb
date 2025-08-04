@@ -1,8 +1,10 @@
 package com.example.combinationweb2.controller;
 
 import com.example.combinationweb2.dto.BoxingForm;
+import com.example.combinationweb2.dto.CommentDto;
 import com.example.combinationweb2.entity.Boxing;
 import com.example.combinationweb2.repository.BoxingRepository;
+import com.example.combinationweb2.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -20,6 +23,9 @@ public class BoxingController {
 
     @Autowired
     private BoxingRepository boxingRepository; //boxingRepository 객체 선언
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("boxing/new")
     public String creatingForm() {
@@ -45,8 +51,10 @@ public class BoxingController {
         log.info("id = " + id);
         //1.id를 조회해 데이터 가져오기
         Boxing boxingEntity = boxingRepository.findById(id).orElse(null);
+        List<CommentDto> commentDtos = commentService.comments(id); //(댓글 목록 뷰 페이지 반환)
         //2.모델에 데이터 등록하기
         model.addAttribute("boxing",boxingEntity);
+        model.addAttribute("commentDtos",commentDtos); //변수값을 "변수명"이라는 이름으로 추가
         //3.뷰 페이지 반환하기
         return "boxing/show";
     }
