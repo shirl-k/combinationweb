@@ -27,7 +27,7 @@ public class JDBC_MySQL {
                     //연결 끊기
                     conn.close();
                     System.out.println("연결 끊기");
-                    }catch (SQLException e) {}
+                    }catch (SQLException e) {} //예외처리
                 }
             }
         }

@@ -70,7 +70,7 @@ public class CommentService {
         Comment target = commentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패" + "대상이 없습니다"));
         //2. 댓글 삭제
-        CommentRepository.delete(target);
+        CommentRepository      .delete(target);
 
         //3. 삭제 댓글을 DTO로 변환 및 반환
         return CommentDto.createCommentDto(target);
