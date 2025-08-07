@@ -1,14 +1,12 @@
 package com.example.combinationweb2.dto;
 
 import com.example.combinationweb2.entity.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 public class CommentDto {
     private Long id;

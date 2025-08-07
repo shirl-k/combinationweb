@@ -18,7 +18,7 @@ public class Comment {
     private Long id;  //대표 키 지정
 
     @ManyToOne //Comment 엔티티와 Boxing 엔티티를 다대일 관계로 설정
-    @JoinColumn(name="boxing_id") //외래키 생성, Boxing
+    @JoinColumn(name="boxing_id") //외래키 생성, Boxing 엔티티의 기본키 (id)와 매핑
     private Boxing boxing;  //해당 댓글의 부모 게시글 
     
     @Column //해당 필드를 테이블의 속성으로 매핑

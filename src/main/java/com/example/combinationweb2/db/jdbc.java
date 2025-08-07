@@ -1,10 +1,10 @@
-package db;
+package com.example.combinationweb2.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JDBC_MySQL {
+public class jdbc {
     public static void main(String[] args) {
         //JDBC Driver 등록
         Connection conn = null;
@@ -27,9 +27,9 @@ public class JDBC_MySQL {
                     //연결 끊기
                     conn.close();
                     System.out.println("연결 끊기");
-                    }catch (SQLException e) {} //예외처리
-                }
+                }catch (SQLException e) {} //예외처리
             }
         }
     }
 
+}
